@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Анкетирование</title>
+</head>
+<body>
+    <h1>Заполните анкету</h1>
+    <!-- Форма для ввода данных -->
+    <form action="/submit" method="POST">
+        <label for="name">Имя:</label><br>
+        <input type="text" id="name" name="name"><br>
+
+        <label for="city">Город:</label><br>
+        <input type="text" id="city" name="city"><br>
+
+        <label for="hobby">Хобби:</label><br>
+        <textarea id="hobby" name="hobby"></textarea><br>
+
+        <label for="age">Возраст:</label><br>
+        <select id="age" name="age">
+            {% for age in ages %}
+                <option value="{{ age }}">{{ age }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Отправить</button>
+    </form>
+
+    <!-- Отображение введенных данных после отправки формы -->
+    {% if user_data %}
+        <hr>
+        <h2>Ваши данные</h2>
+        <p>Имя: {{ user_data.name }}</p>
+        <p>Город: {{ user_data.city }}</p>
+        <p>Хобби: {{ user_data.hobby }}</p>
+        <p>Возраст: {{ user_data.age }}</p>
+    {% endif %}
+</body>
+</html>
